@@ -140,12 +140,7 @@ const Assignments =
   }
 ];
 
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-}).then(() => console.log("DB connection successful!"));
+mongoose.connect(process.env.MONGO_URI).then(() => console.log("DB connection successful!"));
 
 // IMPORT DATA INTO DB
 const importData = async () => {
