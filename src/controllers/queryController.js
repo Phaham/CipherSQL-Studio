@@ -1,5 +1,5 @@
 const Assignment = require("../models/Assignment");
-const UserProgress = require("../models/UserProgress");
+const UserProgress = require("../../Extras/UserProgress");
 const { executeQuery } = require("../services/sandboxService");
 const { compareResults } = require("../services/resultComparator");
 
@@ -21,7 +21,8 @@ async function runQuery(req, res, next) {
 
     let queryResult;
     try {
-      queryResult = await executeQuery(assignmentId, sql);
+      const cleanSql = sql.trim().replace(/;+$/, ""); // remove trailing semicolons
+      queryResult = await executeQuery(assignmentId, cleanSql);
     } catch (queryErr) {
       const errorType = queryErr.type || "SQL_ERROR";
       return res.status(200).json({
@@ -68,6 +69,8 @@ async function runQuery(req, res, next) {
       verdict: {
         correct: verdict.correct,
         message: verdict.message,
+        queryOutput: verdict.queryOutput,
+        expectedOutput: verdict.expectedOutput,
       },
     });
   } catch (err) {

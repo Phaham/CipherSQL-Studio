@@ -12,7 +12,7 @@ const pgPool = new Pool({
   database: process.env.PG_DATABASE || "ciphersqlstudio_sandbox",
   user: process.env.PG_USER || "postgres",
   password: process.env.PG_PASSWORD,
-  max: 20,               // max pool size
+  max: 20,  // max pool size
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 5000,
   statement_timeout: parseInt(process.env.QUERY_TIMEOUT_MS, 10) || 5000,

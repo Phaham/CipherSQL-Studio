@@ -9,9 +9,11 @@ const cors = require("cors");
 
 const connectDB = require("./config/mongo");
 const { pgPool } = require("./config/postgres");
+
 const assignmentRoutes = require("./routes/assignments");
 const queryRoutes = require("./routes/query");
 const hintRoutes = require("./routes/hints");
+
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -39,6 +41,7 @@ app.use(
     methods: ["GET", "POST"],
   })
 );
+
 app.use(express.json({ limit: "50kb" }));
 
 app.use("/api/assignments", assignmentRoutes);
@@ -49,12 +52,15 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
+
+// connect with mongodb and test postgres connection
 (async () => {
   await connectDB();
   try {
     await pgPool.query("SELECT 1");
     console.log("✅ PostgreSQL connected");
   } catch (err) {
+    console.log(err);
     console.error("❌ PostgreSQL connection failed:", err.message);
     process.exit(1);
   }
