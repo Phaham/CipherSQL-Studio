@@ -1,0 +1,53 @@
+
+.sqlEditor {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.runBtn {
+    background-color: rgb(28, 127, 28);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    align-self: flex-start;
+    border: none;
+
+    &:hover {
+        background-color: darken(rgb(28, 127, 28), 2%);
+        scale: 110%;
+    }
+}
+
+.output {
+    padding: 0px 20px 20px 20px;
+    background-color: aliceblue;
+    min-height: 200px;
+
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.output_left {
+    border-right: 1px solid black;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.output_right {
+    border-left: 1px solid black;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.output_left, .output_right {
+    h4, p {
+        margin: 0;
+    }
+}

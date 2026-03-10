@@ -6,7 +6,7 @@ const Assignments = async () => {
     // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assignments`, {
     //     next: { revalidate: 3600 }
     // } )
-    // // const assignments = res.data;
+    // // const assignments = res.json();
 
     const assignments = [
         {

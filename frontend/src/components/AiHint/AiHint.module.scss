@@ -1,0 +1,18 @@
+
+.hint {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+
+    button {
+        align-self: flex-start;
+        padding: 5px 10px;
+        border-radius: 5px;
+        
+        &:hover {
+            background-color: aliceblue;
+            scale: 110%;
+        }
+    }
+}

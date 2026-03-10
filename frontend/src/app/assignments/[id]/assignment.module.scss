@@ -1,0 +1,61 @@
+
+.assignment {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    color: rgb(245, 255, 255);
+}
+
+@media (max-width: 768px) {
+    .assignment {
+        flex-direction: column;
+    }
+}
+
+.assignment_left {
+    flex: 4;
+    padding: 20px;
+
+    h3,h4,p {
+        margin: 0;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+}
+
+.assignment_left table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    background: rgb(40, 40, 40);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.assignment_left th {
+    background-color: rgb(60, 60, 60);
+    padding: 8px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.assignment_left td {
+    padding: 8px;
+    border-top: 1px solid rgb(80, 80, 80);
+}
+
+.assignment_left tbody tr:hover {
+    background-color: rgb(55, 55, 55);
+}
+
+.assignment_right {
+    flex: 6;
+    padding: 20px;
+}

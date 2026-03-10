@@ -2,6 +2,11 @@ body {
   background-color: rgb(118, 118, 118);
 }
 
+/* html, body {
+  height: 100%;
+  margin: 0;
+} */
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

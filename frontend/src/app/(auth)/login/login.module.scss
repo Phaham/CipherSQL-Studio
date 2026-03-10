@@ -1,0 +1,54 @@
+
+.container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    // border: 2px solid green
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid red;
+    flex: 2
+}
+
+.left img {
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+}
+
+.login {
+    margin-top: 160px;
+    margin-right: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    width: 400px;
+    // border: 1px solid yellow;
+    padding: 40px;
+
+    input {
+        padding: 16px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    button {
+        padding: 16px;
+        border-radius: 8px;
+        border: none;
+        background-color: rgb(61, 61, 82);
+        color: white;
+        font-size: medium;
+
+        &:hover {
+            background-color: darken(rgb(61, 61, 82), 5%);
+            scale: 102%
+        }
+    }
+}
