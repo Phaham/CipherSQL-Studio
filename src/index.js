@@ -7,9 +7,12 @@ const xss = require("xss-clean");
 // const hpp = require("hpp");
 const cors = require("cors");
 
+const cookieParser = require("cookie-parser");
+
 const connectDB = require("./config/mongo");
 const { pgPool } = require("./config/postgres");
 
+const authRoutes = require("./routes/auth");
 const assignmentRoutes = require("./routes/assignments");
 const queryRoutes = require("./routes/query");
 const hintRoutes = require("./routes/hints");
@@ -29,6 +32,7 @@ app.use("/api", limiter);
 
 app.use(helmet());
 app.use(cors());
+app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -44,6 +48,7 @@ app.use(
 
 app.use(express.json({ limit: "50kb" }));
 
+app.use("/api/auth", authRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/query", queryRoutes);
 app.use("/api/hints", hintRoutes);
@@ -69,3 +74,7 @@ const PORT = process.env.PORT || 3000;
     console.log(`CipherSQL Studio backend running on port ${PORT}`);
   });
 })();
+
+
+// TODO
+// clear sandbox table before as soon as request from client

@@ -2,8 +2,11 @@ const mongoose = require("mongoose");
 
 const UserProgressSchema = new mongoose.Schema(
   {
-    // userId or sessionId (for non-authenticated users)
-    userId: { type: String, required: true, index: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
     assignmentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Assignment",

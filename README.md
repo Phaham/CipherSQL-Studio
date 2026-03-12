@@ -13,7 +13,7 @@ Client (React)
     └── POST /api/hints                → LLM hint (no solution leakage)
          │
          ├── MongoDB Atlas             (assignment data, user progress)
-         └── PostgreSQL                (per-problem isolated sandbox schemas)
+         └── PostgreSQL(Supabase)                (per-problem isolated sandbox schemas)
 ```
 
 ## How the Sandbox Works
@@ -44,12 +44,24 @@ Database: ciphersqlstudio_sandbox
 5. Result is compared against `expectedOutput` from MongoDB.
 6. Client gets `{ result, verdict: { correct, message } }`.
 
+
+**Authentication Flow**
+```Signup → hash password with bcrypt → save user → return JWT
+Login → verify password → return JWT
+Frontend sends JWT in Authorization: Bearer <token> header on protected routes
+protect middleware verifies the token and attaches req.user to the request
+
+Profile endpoint:
+
+GET /api/auth/profile — protected, returns user info + their solved assignments by querying UserProgress where userId = req.user.id and isCompleted = true
+```
+
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
 | Runtime | Node.js / Express.js |
-| Sandbox DB | PostgreSQL |
+| Sandbox DB | PostgreSQL (Supabase) |
 | Persistence DB | MongoDB Atlas |
 | LLM Hints | OpenAI GPT-4o-mini |
 
@@ -71,11 +83,9 @@ cp .env.example .env
 ### 3. Set up PostgreSQL
 
 ```bash
-# Run as postgres superuser
-psql -U postgres -f scripts/pg_setup.sql
+# set up supabase project
+Create a project in Supabase, update this project's credentials in .env
 ```
-
-Update `.env` with your PG credentials (`PG_USER=ciphersql_app`, `PG_PASSWORD=...`).
 
 ### 4. Set up MongoDB
 
@@ -99,7 +109,7 @@ npm start
 ## API Reference
 
 ### `GET /api/assignments`
-Returns all assignments (no expected output).
+Returns all assignments (only needed values - such as title, description, question).
 
 **Response:**
 ```json
@@ -215,7 +225,6 @@ Gets an LLM-generated hint (never a full solution).
 ## Security
 
 - Only `SELECT` and `WITH` (CTEs) are allowed — all other statements return a validation error
-- 20+ forbidden keyword patterns checked before any DB interaction
 - Each assignment runs in its own PostgreSQL schema (`SET search_path`)
 - All user queries run inside `BEGIN READ ONLY` transactions
 - `statement_timeout` prevents long-running queries
@@ -224,20 +233,4 @@ Gets an LLM-generated hint (never a full solution).
 - Helmet.js security headers
 - Request body capped at 50kb
 
-## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `PORT` | Server port | `5000` |
-| `MONGO_URI` | MongoDB connection string | required |
-| `PG_HOST` | PostgreSQL host | `localhost` |
-| `PG_PORT` | PostgreSQL port | `5432` |
-| `PG_DATABASE` | PostgreSQL database | `ciphersqlstudio_sandbox` |
-| `PG_USER` | PostgreSQL user | `postgres` |
-| `PG_PASSWORD` | PostgreSQL password | required |
-| `OPENAI_API_KEY` | OpenAI API key for hints | required |
-| `QUERY_TIMEOUT_MS` | Max query execution time (ms) | `5000` |
-| `MAX_RESULT_ROWS` | Max rows returned | `500` |
-| `SANDBOX_SCHEMA_PREFIX` | Schema name prefix | `ws_` |
-| `RATE_LIMIT_WINDOW_MS` | Rate limit window | `60000` |
-| `RATE_LIMIT_MAX_REQUESTS` | Max requests per window | `30` |

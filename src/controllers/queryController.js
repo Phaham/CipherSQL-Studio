@@ -1,5 +1,5 @@
 const Assignment = require("../models/Assignment");
-const UserProgress = require("../../Extras/UserProgress");
+const UserProgress = require("../models/UserProgress");
 const { executeQuery } = require("../services/sandboxService");
 const { compareResults } = require("../services/resultComparator");
 
@@ -43,20 +43,20 @@ async function runQuery(req, res, next) {
     const verdict = compareResults(queryResult, assignment.expectedOutput);
 
     // 4. Persist progress -
-    // if (userId) {
-    //   await UserProgress.findOneAndUpdate(
-    //     { userId, assignmentId },
-    //     {
-    //       $set: {
-    //         sqlQuery: sql,
-    //         lastAttempt: new Date(),
-    //         isCompleted: verdict.correct,
-    //       },
-    //       $inc: { attemptCount: 1 },
-    //     },
-    //     { upsert: true, new: true }
-    //   );
-    // }
+    if (userId) {
+      await UserProgress.findOneAndUpdate(
+        { userId, assignmentId },
+        {
+          $set: {
+            sqlQuery: sql,
+            lastAttempt: new Date(),
+            isCompleted: verdict.correct,
+          },
+          $inc: { attemptCount: 1 },
+        },
+        { upsert: true, new: true }
+      );
+    }
 
     return res.json({
       success: true,
