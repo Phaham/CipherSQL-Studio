@@ -1,4 +1,4 @@
-# CipherSQL Studio — Backend
+# CipherSQL Studio - Backend
 
 Node.js + Express backend for the CipherSQL Studio SQL learning platform.
 
