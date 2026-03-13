@@ -18,6 +18,7 @@
     }
 }
 
+
 .logo {
     font-size: 21px;
     font-weight: 500;
@@ -25,6 +26,7 @@
 
 .desktopAuth {
     display: flex;
+    align-items: center;;
     gap: 20px;
 
     a:hover {
@@ -39,17 +41,10 @@
 }
 
 .mobileMenu {
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background: white;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 10px;
+    display: none;
 }
+
+
 
 @media (max-width: 768px) {
     .navbar {
@@ -69,6 +64,19 @@
     .toggleBtn {
         display: block;
     }
+
+    .mobileMenu {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        background: white;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
 }
 
 @media (min-width: 1600px) {
@@ -83,3 +91,9 @@
     }
 }
 
+
+.logoutBtn {
+    height: 36px;
+    font-size: 20px;
+    padding: 5px;
+}

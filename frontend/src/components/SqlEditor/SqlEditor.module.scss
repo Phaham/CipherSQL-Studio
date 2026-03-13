@@ -3,51 +3,109 @@
     display: flex;
     flex-direction: column;
     color: black;
+    gap: 8px;
+}
+
+
+.error {
+    font-size: medium;
+    color: red;
+}
+
+.success {
+    background-color: #DCFCE7;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+}
+
+.failure {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+    border-radius: 12px;
+    padding: 2px 8px;
 }
 
 .runBtn {
-    background-color: rgb(28, 127, 28);
+    background-color: #F59E0B;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 5px 10px;
+    border-radius: 1px;
     align-self: flex-start;
     border: none;
 
     &:hover {
-        background-color: darken(rgb(28, 127, 28), 2%);
-        scale: 110%;
+        background-color: darken(#F59E0B, 2%);
     }
 }
 
 .output {
-    padding: 0px 20px 20px 20px;
-    background-color: aliceblue;
+    // padding: 0px 20px 20px 20px;
+    background-color: #FFF;
     min-height: 200px;
+    color: #4B5563;
+    border: 1px solid #F3F4F6;
 
-    div {
-        display: flex;
-        justify-content: space-around;
-    }
+    // div {
+    //     display: flex;
+    //     justify-content: space-around;
+    // }
 }
 
-.output_left {
-    border-right: 1px solid black;
-    flex: 1;
+.outputHead {
     display: flex;
-    flex-direction: column;
-    padding-left: 10px;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #E5E7EB;
+    padding: 0px 12px
 }
 
-.output_right {
-    border-left: 1px solid black;
-    flex: 1;
+.buttons {
     display: flex;
-    flex-direction: column;
-    padding-left: 10px;
+    justify-content: end;
+    gap: 10px;
+    border: 1px solid #E5E7EB;
+    padding: 8px;
 }
 
-.output_left, .output_right {
-    h4, p {
-        margin: 0;
-    }
+.format {
+    background-color: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 1px;
+    padding: 5px 10px;
 }
+
+.submit {
+    background-color: #F59E0B1A;
+    color: #F59E0B;
+    border: 1px solid #F59E0B33;
+    border-radius: 1px;
+    padding: 5px 10px;
+}
+
+.result {
+    padding: 10px;
+}
+
+// .output_left {
+//     border-right: 1px solid black;
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     padding-left: 10px;
+// }
+
+// .output_right {
+//     border-left: 1px solid black;
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     padding-left: 10px;
+// }
+
+// .output_left, .output_right {
+//     h4, p {
+//         margin: 0;
+//     }
+// }

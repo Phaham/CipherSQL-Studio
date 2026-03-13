@@ -3,7 +3,8 @@
     display: flex;
     gap: 20px;
     width: 100%;
-    color: rgb(245, 255, 255);
+    color: #4B5563;
+    background-color: #F3F4F6;
 }
 
 @media (max-width: 768px) {
@@ -15,6 +16,7 @@
 .assignment_left {
     flex: 4;
     padding: 20px;
+    background-color: white;
 
     h3,h4,p {
         margin: 0;
@@ -34,13 +36,13 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 8px;
-    background: rgb(40, 40, 40);
+    background: white;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .assignment_left th {
-    background-color: rgb(60, 60, 60);
+    background-color: #F9FAFB;
     padding: 8px;
     text-align: left;
     font-weight: 600;
@@ -48,11 +50,11 @@
 
 .assignment_left td {
     padding: 8px;
-    border-top: 1px solid rgb(80, 80, 80);
+    border-top: 1px solid #F9FAFB;
 }
 
 .assignment_left tbody tr:hover {
-    background-color: rgb(55, 55, 55);
+    background-color: #F9FAFB;
 }
 
 .assignment_right {

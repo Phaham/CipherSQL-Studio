@@ -3,53 +3,56 @@ import styles from './assignments.module.scss'
 
 const Assignments = async () => {
 
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assignments`, {
-    //     next: { revalidate: 3600 }
-    // } )
-    // // const assignments = res.json();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assignments`, {
+        // next: { revalidate: 3600 }
+        method:'GET',
+        credentials: 'include'
+    } )
+    const response = await res.json();
+    const assignments = response.data;
 
-    const assignments = [
-        {
-          "id": 1,
-          "title": "Find All Users",
-          "difficulty": "Easy"
-        },
-        {
-          "id": 2,
-          "title": "Orders Above 100",
-          "difficulty": "Medium"
-        },
-        {
-          "id": 3,
-          "title": "Find All Users",
-          "difficulty": "Easy"
-        },
-        {
-          "id": 4,
-          "title": "Orders Above 100",
-          "difficulty": "Medium"
-        },
-        {
-          "id": 5,
-          "title": "Find All Users",
-          "difficulty": "Easy"
-        },
-        {
-          "id": 6,
-          "title": "Orders Above 100",
-          "difficulty": "Medium"
-        },
-        {
-          "id": 7,
-          "title": "Find All Users",
-          "difficulty": "Easy"
-        },
-        {
-          "id": 8,
-          "title": "Orders Above 100",
-          "difficulty": "Medium"
-        }
-      ]
+    // const assignments = [
+    //     {
+    //       "id": 1,
+    //       "title": "Find All Users",
+    //       "difficulty": "Easy"
+    //     },
+    //     {
+    //       "id": 2,
+        //   "title": "Orders Above 100",
+        //   "difficulty": "Medium"
+        // },
+        // {
+        //   "id": 3,
+        //   "title": "Find All Users",
+        //   "difficulty": "Easy"
+        // },
+        // {
+        //   "id": 4,
+        //   "title": "Orders Above 100",
+        //   "difficulty": "Medium"
+        // },
+        // {
+      //     "id": 5,
+      //     "title": "Find All Users",
+      //     "difficulty": "Easy"
+      //   },
+      //   {
+      //     "id": 6,
+      //     "title": "Orders Above 100",
+      //     "difficulty": "Medium"
+      //   },
+      //   {
+      //     "id": 7,
+      //     "title": "Find All Users",
+      //     "difficulty": "Easy"
+      //   },
+      //   {
+      //     "id": 8,
+      //     "title": "Orders Above 100",
+      //     "difficulty": "Medium"
+      //   }
+      // ]
 
     return (
         <div className={styles.container}>
@@ -59,9 +62,9 @@ const Assignments = async () => {
               <p>DIFFICULTY</p>
             </div>
             { assignments.map(a => (
-                <div key={a.id} className={styles.assignments_row} >
-                    <Link className={styles.assignments_link} href={`/assignments/${a.id}`}>{ a.title }</Link>
-                    <p className={styles.assignments_dif}>{ a.difficulty }</p>
+                <div key={a._id} className={styles.assignments_row} >
+                    <Link className={styles.assignments_link} href={`/assignments/${a._id}`}>{ a.title }</Link>
+                    <p className={styles.assignments_dif}>{ a.description }</p>
                 </div>
             ))}
           </div>
