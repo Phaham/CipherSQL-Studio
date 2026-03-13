@@ -91,7 +91,7 @@ const SqlEditor = ({ id }) => {
                             <table>
                                 <thead>
                                     <tr>
-                                    {Object.keys(queryOutput[0]).map((key) => (
+                                    {queryOutput[0] && Object.keys(queryOutput[0]).map((key) => (
                                         <th key={key}>{key}</th>
                                     ))}
                                     </tr>
