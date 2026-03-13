@@ -171,3 +171,6 @@ if (process.argv[2] === "--import") {
 } else if (process.argv[2] === "--delete") {
   deleteData();
 }
+
+// insert data - node seed.js --import
+// delete data - node seed.js --delete

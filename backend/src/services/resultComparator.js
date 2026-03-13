@@ -35,18 +35,6 @@ function normalizeRow(row) {
   return result;
 }
 
-// 
-// function rowToSortKey(row) {
-//   return JSON.stringify(
-//     Object.keys(row)
-//       .sort()
-//       .reduce((acc, k) => {
-//         acc[k] = row[k];
-//         return acc;
-//       }, {})
-//   );
-// }
-
 
 function compareResults(queryResult, expectedOutput) {
   const { rows } = queryResult;
