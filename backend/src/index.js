@@ -31,7 +31,6 @@ app.use("/api", limiter);
 
 
 app.use(helmet());
-app.use(cors());
 app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection

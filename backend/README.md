@@ -106,6 +106,25 @@ npm run dev
 npm start
 ```
 
+<!-- ## Scaling - What If 1k users run queries simultaneously
+
+**Solution**
+```bash
+Instead of running the user's query directly and waiting for a response (synchronous), it becomes asynchronous:
+
+User hits POST /api/query/run
+Backend saves the job to Redis (via BullMQ queue) and immediately returns { jobId: "123", status: "queued" }
+A separate Sandbox Server (worker) picks the job from the queue, runs the query on PostgreSQL, and sends the result back via a callback
+Frontend polls GET /api/query/status/:jobId to check if the result is ready
+
+
+Why this is useful at scale:
+
+If 1k users run queries simultaneously, they don't all hammer PostgreSQL at once - the queue controls the load
+The sandbox server can be scaled independently
+Long running queries don't block the main server
+``` -->
+
 ## API Reference
 
 ### `GET /api/assignments`
