@@ -4,6 +4,8 @@ import { useState } from "react";
 import styles from './login.module.scss';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { login } from "@/store/authSlice";
 
 const Login = () => {
 
@@ -12,14 +14,16 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email)
-        console.log(password)
+        // console.log(email)
+        // console.log(password)
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, 
             {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -32,6 +36,12 @@ const Login = () => {
         const response = await res.json();
         if(response.success) {
             //  add state to redux
+            dispatch(login({
+                userId: response.user.id,
+                firstName: response.user.firstName,
+                email: response.user.email
+            }));
+
             router.push('/assignments')
         } else {
             setError(response.message);

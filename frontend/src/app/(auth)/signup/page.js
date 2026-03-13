@@ -3,15 +3,46 @@
 import { useState } from "react";
 import styles from './signup.module.scss';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Signup = () => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [mobileNo, setMobileNo] = useState('');
     const [password, setPassword] = useState('');
-    const [cPassword, setCpassword] = useState('');
     const [error, setError] = useState('');
+
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, 
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    mobileNo,
+                    password
+                })
+            }
+        )
+        const response = await res.json();
+        if(response.success) {
+            //  add state to redux
+            alert('User registered successfully, Login now');
+            router.push('/login');
+        } else {
+            setError(response.message);
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -23,7 +54,7 @@ const Signup = () => {
                     <p>Sign-Up and begin with your coding!</p>
                 </div>
 
-                <form className={styles.signup}>
+                <form onSubmit={handleSubmit} className={styles.signup}>
                     <input 
                         type="text"
                         placeholder="First Name:"
@@ -59,7 +90,7 @@ const Signup = () => {
                         <input type="checkbox"></input>
                         <p>Get our exclusive newsletters for updates and offers.</p>
                     </div>
-                    <button className={styles.full}>Sign-Up</button>
+                    <button type="submit" className={styles.full}>Sign-Up</button>
                 </form>
                 <p>Already have an account? <Link href='/login'>Sign-in Now!</Link></p>
                 {error && <p className={styles.error}>{error}</p>}

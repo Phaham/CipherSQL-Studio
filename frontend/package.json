@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.8.0-rc.3",
+    "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.13.6",
     "monaco-editor": "^0.55.1",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-redux": "^9.2.0",
     "sass": "^1.97.3"
   }
 }
