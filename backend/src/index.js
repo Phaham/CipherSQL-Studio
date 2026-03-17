@@ -47,7 +47,7 @@ app.use(
 );
 
 
-console.log('this is the env', proces.env.NODE_ENV);
+console.log('this is the env', process.env.NODE_ENV);
 
 app.use(express.json({ limit: "50kb" }));
 
