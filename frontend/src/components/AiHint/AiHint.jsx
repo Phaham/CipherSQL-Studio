@@ -3,24 +3,31 @@
 import { useState } from "react";
 import styles from './AiHint.module.scss';
 
-const AiHint = () => {
+const AiHint = ({id}) => {
 
     const [hint, setHint] = useState('');
 
     const handleHint = async () => {
-        // const res = await fetch(`${NEXT_PUBLIC_API_URL}/hints`, 
-        //     {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json' 
-        //         }
-        //     }
-        // )
-        //  if (resizeBy.ok) {
-        //     const data = await res.json();
-        //     setHint(data)
-        //  }
-        setHint('This is AI hint for you')
+        // console.log('This is problem id: ', id)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hints`, 
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify({
+                    assignmentId: id
+                })
+            }
+        )
+         if (res.ok) {
+            const response = await res.json();
+            if(response.success) {
+                setHint(response.hint);
+            }
+         }
+        // setHint('This is AI hint for you')
     }
 
     return (

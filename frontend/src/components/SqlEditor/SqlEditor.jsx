@@ -23,7 +23,9 @@ const SqlEditor = ({ id }) => {
         // console.log(query, 'id: ', id);
         // setResult('Something')
         // console.log('This is id: ', id)
-        if(!user || !user.id) {
+        if(!user || !user.userId) {
+            // console.log('Hi')
+            // console.log(user);
             alert('You must login before running query!')
             router.push('/login');
             return;
@@ -89,7 +91,7 @@ const SqlEditor = ({ id }) => {
                     ) : (
                         <div>
                             {verdict === 'passed' && <p className={styles.success}>Success</p>}
-                            {verdict === 'failed' && <p className={styles.success}>Success</p>}
+                            {verdict === 'failed' && <p className={styles.failure}>Failed</p>}
                             {/* {verdict ? (
                                 <p className={styles.success}>Success</p>
                             ) : (
