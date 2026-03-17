@@ -43,7 +43,7 @@ const AssignmentPage = async ({ params }) => {
                                 ))}
                             </tbody>
                         </table>
-                        <AiHint />
+                        <AiHint id={ id } />
                     </div>
                 ))}
             </section>
