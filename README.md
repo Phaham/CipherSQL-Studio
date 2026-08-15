@@ -1,4 +1,4 @@
-# CipherSQL Studio
+# QueryStudio
 
 A browser-based SQL learning platform where students can practice SQL queries against pre-configured assignments with real-time execution and AI-powered hints.
 
